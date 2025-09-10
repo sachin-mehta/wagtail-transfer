@@ -569,7 +569,10 @@ class ImportPlanner:
                 # an exception to be propagated back up the chain until we're back to a caller that
                 # can handle it gracefully - namely, a soft dependency that can be left
                 # unsatisfied.
-                raise CircularDependencyException()
+                if dep_is_hard:
+                    raise CircularDependencyException()
+                else:
+                    continue
             else:
                 try:
                     # recursively add the operation that we're depending on here
