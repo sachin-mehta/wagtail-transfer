@@ -250,6 +250,8 @@ def import_missing_object_data(source, importer: ImportPlanner):
         response = requests.post(
             f"{base_url}api/objects/", params={'digest': digest}, data=request_data
         )
+        print("RESPONSEEEEEEE", response)
+        print("RESPONSEEEEEEE CONTENT", response.content)
         importer.add_json(response.content)
     importer.run()
     return importer
